@@ -2,7 +2,7 @@
 
 The roadmap is capability- and evidence-gated, not date-driven. A phase exits only when its artifacts are reviewed and reproducible. Scope may be split into smaller releases, but gates may not be silently deferred into production.
 
-## Phase 0 — Foundation (current)
+## Phase 0 — Foundation (complete 2026-07-31)
 
 Outcome: a public repository with shared language, researched decisions, risk boundaries, delivery process, and agent guidance.
 
@@ -16,7 +16,7 @@ Required evidence:
 - source register with dated primary research;
 - public GitHub repository with default branch and repository description/topics.
 
-Exit gate: links/manifests validate, no unresolved placeholder remains, decisions do not contradict, and the foundation is committed/pushed. Product code is still absent.
+Exit gate met on 2026-07-31: links/manifests validated, no unresolved placeholder remained, decisions were reviewed for contradiction, the foundation was committed/pushed, and product code remained absent.
 
 ## Phase 1 — Executable financial kernel
 

@@ -39,4 +39,4 @@ These rules apply to the whole repository. Keep this file small; detailed policy
 
 ## Current phase
 
-Phase 0 is documentation and decision work. Product code may begin only when a task explicitly advances Phase 1 and satisfies the Phase 0 exit gate. Configuration, templates, manifests, and documentation validation used to establish this foundation are allowed.
+Phase 0 completed on 2026-07-31. Phase 1 has not started. Product code may begin only when a task explicitly advances Phase 1 with a task packet and the first-slice gates in the roadmap. Configuration, templates, manifests, research, and documentation maintenance remain allowed.

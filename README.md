@@ -1,6 +1,6 @@
 # Banking Core
 
-Banking Core is a planned, open-source financial core for banks, e-wallets, and regulated financial platforms. The working language is C# on .NET. The project is in **foundation phase**: architecture, financial invariants, security, compliance mapping, delivery gates, and agent operating rules are being established before product code is accepted.
+Banking Core is a planned, open-source financial core for banks, e-wallets, and regulated financial platforms. The working language is C# on .NET. **Foundation phase completed on 2026-07-31; implementation has not started.** Architecture, financial invariants, security, compliance mapping, delivery gates, and agent operating rules now precede product code.
 
 This repository is not a demo, a reference toy, or a claim of regulatory certification. It is intended to become production-capable software through staged delivery, independent review, reproducible evidence, and jurisdiction-specific validation.
 
