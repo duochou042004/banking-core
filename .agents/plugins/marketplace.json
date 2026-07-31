@@ -1,7 +1,7 @@
 {
-  "name": "personal",
+  "name": "banking-core",
   "interface": {
-    "displayName": "Personal"
+    "displayName": "Banking Core"
   },
   "plugins": [
     {

@@ -71,9 +71,12 @@ Comparator documentation is descriptive, not independent proof of its claims. No
 
 | Source | Use in this project | Volatility |
 | --- | --- | --- |
+| [Codex `AGENTS.md` instructions](https://learn.chatgpt.com/docs/agent-configuration/agents-md) | Instruction discovery, precedence, routing, and size discipline. | High |
 | [Codex customization](https://learn.chatgpt.com/docs/customization/overview) | Division among `AGENTS.md`, skills, MCP, and durable repo context. | High |
 | [Codex skill authoring](https://learn.chatgpt.com/docs/build-skills) | Progressive disclosure, `SKILL.md`, metadata, and repo locations. | High |
 | [Codex plugin packaging](https://developers.openai.com/plugins/build/plugins) | Plugin manifest and repo marketplace layout. | High |
+
+The agent foundation was re-audited on 2026-07-31 using the official Codex manual helper after Node.js became available. Direct links above remain the reviewable sources of record; the generated local manual cache is transient and is not committed.
 
 ## Refresh procedure
 

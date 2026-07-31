@@ -75,6 +75,14 @@ Evidence is named and reproducible: command/tool version, inputs/seed/workload, 
 
 When an agent repeatedly makes a wrong assumption, fix the closest source document or `AGENTS.md` routing rule. Keep `AGENTS.md` evergreen and concise. Put reusable multi-step procedure in a skill; put enforceable deterministic behavior in tests, analyzers, constraints, CI, or hooks. Do not solve recurring failures by adding an unbounded mega-prompt.
 
+Use each Codex surface for one job:
+
+- `AGENTS.md` contains small, persistent rules and routes to project truth.
+- `.agents/skills/` contains repo-scoped repeatable workflows that Codex can discover without installation.
+- `.agents/plugins/` packages reusable skills for explicit installation and distribution beyond this repository.
+- MCP is reserved for authenticated access to systems outside the repository; never embed credentials in skills or plugin manifests.
+- Tests, analyzers, constraints, CI, and reviewed hooks enforce deterministic rules. Instructions explain them but are not enforcement.
+
 ## Phase 0 validation commands
 
 Until a code harness exists, validate repository docs and agent packages with:
