@@ -35,7 +35,7 @@ These rules apply to the whole repository. Keep this file small; detailed policy
 - APIs/events: [docs/architecture/integration.md](docs/architecture/integration.md)
 - Security/compliance: [docs/security/](docs/security/)
 - Testing and release evidence: [docs/delivery/quality-gates.md](docs/delivery/quality-gates.md), [docs/delivery/testing-strategy.md](docs/delivery/testing-strategy.md)
-- Reusable agent workflow: `$govern-banking-core` from the repo plugin catalog
+- Reusable agent workflow: use `$govern-banking-core` in Codex or `/govern-banking-core` in Claude Code; see [agent extensions](docs/agents/agent-extensions.md)
 
 ## Current phase
 

@@ -25,7 +25,7 @@ Do not fill material unknowns with confident guesses. Research read-only facts a
 2. Read `docs/README.md` and only the task-relevant source documents.
 3. Search decisions for the affected topic and check whether one is Proposed, Accepted, or Superseded.
 4. Inspect the current implementation/tests/config when they exist; documentation is not proof that code conforms.
-5. Use `$govern-banking-core` for planning or reviewing material banking-core changes.
+5. Use the `govern-banking-core` project skill for planning or reviewing material changes (`$govern-banking-core` in Codex, `/govern-banking-core` in Claude Code).
 
 Avoid loading every document into context. Quote/link the precise invariant/control in the task or PR so reviewers can trace it.
 
@@ -75,11 +75,11 @@ Evidence is named and reproducible: command/tool version, inputs/seed/workload, 
 
 When an agent repeatedly makes a wrong assumption, fix the closest source document or `AGENTS.md` routing rule. Keep `AGENTS.md` evergreen and concise. Put reusable multi-step procedure in a skill; put enforceable deterministic behavior in tests, analyzers, constraints, CI, or hooks. Do not solve recurring failures by adding an unbounded mega-prompt.
 
-Use each Codex surface for one job:
+Use each agent surface for one job:
 
-- `AGENTS.md` contains small, persistent rules and routes to project truth.
-- `.agents/skills/` contains repo-scoped repeatable workflows that Codex can discover without installation.
-- `.agents/plugins/` packages reusable skills for explicit installation and distribution beyond this repository.
+- `AGENTS.md` contains small, provider-neutral persistent rules and routes to project truth; `CLAUDE.md` imports it for Claude Code.
+- `.agents/skills/` and `.claude/skills/` contain thin host discovery adapters, not duplicate policy.
+- `plugins/` contains the canonical distributable workflow package; `.agents/plugins/marketplace.json` and `.claude-plugin/marketplace.json` are host-specific catalogs that point to it.
 - MCP is reserved for authenticated access to systems outside the repository; never embed credentials in skills or plugin manifests.
 - Tests, analyzers, constraints, CI, and reviewed hooks enforce deterministic rules. Instructions explain them but are not enforcement.
 
@@ -88,8 +88,8 @@ Use each Codex surface for one job:
 Until a code harness exists, validate repository docs and agent packages with:
 
 - search for `TODO`, placeholder text, broken relative links, and conflicting phase/status statements;
-- skill `quick_validate.py` on each skill folder;
-- plugin `validate_plugin.py` on each plugin folder;
+- skill validation on the canonical skill and both host adapters;
+- Codex and Claude plugin/marketplace validation where their CLIs are available;
 - JSON/YAML parsing for manifests;
 - Git status/diff review and GitHub remote/default-branch verification.
 

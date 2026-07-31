@@ -12,7 +12,7 @@ Required evidence:
 - initial threat model, compliance posture, control matrix, reliability model, and testing strategy;
 - accepted ADRs for platform, topology, source of truth, and license;
 - contribution, governance, security, and conduct policies;
-- root agent instructions, harness, evaluation scenarios, validated skill/plugin marketplace;
+- shared Codex/Claude Code instructions, harness, evaluation scenarios, and validated skill/plugin packaging;
 - source register with dated primary research;
 - public GitHub repository with default branch and repository description/topics.
 

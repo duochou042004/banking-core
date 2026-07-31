@@ -37,9 +37,10 @@ The first implementation shape will be a modular monolith with enforceable bound
 - [Compliance and privacy](docs/security/compliance-and-privacy.md)
 - [Delivery roadmap](docs/delivery/roadmap.md)
 - [Agent harness](docs/agents/harness.md)
+- [Agent extensions](docs/agents/agent-extensions.md)
 - [Research report](docs/research/foundation-study-2026-07-31.md)
 
-Contributors should read [CONTRIBUTING.md](CONTRIBUTING.md). AI agents must also follow [AGENTS.md](AGENTS.md).
+Contributors should read [CONTRIBUTING.md](CONTRIBUTING.md). AI agents must follow [AGENTS.md](AGENTS.md); Claude Code starts through [CLAUDE.md](CLAUDE.md), which imports the shared instructions.
 
 ## Technology baseline
 

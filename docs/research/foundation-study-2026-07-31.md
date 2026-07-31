@@ -36,12 +36,12 @@ These are research comparators, not dependencies. The first implementation uses 
 
 ### Agent engineering
 
-Current Codex guidance distinguishes persistent repository rules (`AGENTS.md`), focused reusable workflows (skills), installable bundles (plugins), and live external systems (MCP/connectors). Skills use progressive disclosure: only names and descriptions are initially loaded, then a selected `SKILL.md`. The repository therefore uses:
+Current Codex and Claude Code guidance distinguishes persistent repository rules, focused reusable workflows, installable bundles, and live external systems. Both support progressively loaded Agent Skills but use different project discovery and marketplace metadata. The repository therefore uses:
 
-- a short root `AGENTS.md` for invariants and routing;
+- a short, provider-neutral root `AGENTS.md` for invariants and routing, imported by `CLAUDE.md`;
 - detailed project documents for source-of-truth knowledge;
-- a focused `govern-banking-core` skill for a repeatable change/review workflow;
-- a repo-scoped plugin marketplace for distribution;
+- one canonical `govern-banking-core` workflow with thin Codex and Claude Code project adapters;
+- a shared plugin payload with separate Codex and Claude Code marketplace manifests;
 - an evaluation catalog to expose unsafe agent behavior before protected changes are accepted.
 
 ## Decisions made now

@@ -12,6 +12,8 @@ coverage/
 .idea/
 *.user
 *.suo
+CLAUDE.local.md
+.claude/settings.local.json
 
 # Local configuration and secrets
 .env

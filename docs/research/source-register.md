@@ -75,8 +75,12 @@ Comparator documentation is descriptive, not independent proof of its claims. No
 | [Codex customization](https://learn.chatgpt.com/docs/customization/overview) | Division among `AGENTS.md`, skills, MCP, and durable repo context. | High |
 | [Codex skill authoring](https://learn.chatgpt.com/docs/build-skills) | Progressive disclosure, `SKILL.md`, metadata, and repo locations. | High |
 | [Codex plugin packaging](https://developers.openai.com/plugins/build/plugins) | Plugin manifest and repo marketplace layout. | High |
+| [Claude Code project instructions](https://code.claude.com/docs/en/memory) | `CLAUDE.md` discovery and importing an existing `AGENTS.md`. | High |
+| [Claude Code skills](https://code.claude.com/docs/en/slash-commands) | Agent Skills format, project discovery, and invocation behavior. | High |
+| [Claude Code plugin reference](https://code.claude.com/docs/en/plugins-reference) | Plugin structure, manifests, namespacing, caching, and validation. | High |
+| [Claude Code marketplaces](https://code.claude.com/docs/en/plugin-marketplaces) | Marketplace schema, repo-root path resolution, installation, and distribution. | High |
 
-The agent foundation was re-audited on 2026-07-31 using the official Codex manual helper after Node.js became available. Direct links above remain the reviewable sources of record; the generated local manual cache is transient and is not committed.
+The agent foundation was re-audited on 2026-07-31 using the official Codex manual helper and current official Claude Code documentation. Direct links above remain the reviewable sources of record; generated local caches are transient and are not committed.
 
 ## Refresh procedure
 

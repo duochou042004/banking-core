@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "banking-core-engineering",
+  "displayName": "Banking Core Engineering",
+  "version": "0.2.0",
+  "description": "Guard financial invariants, risk controls, and delivery evidence while building the open Banking Core.",
+  "author": {
+    "name": "Banking Core contributors",
+    "url": "https://github.com/duochou042004"
+  },
+  "homepage": "https://github.com/duochou042004/banking-core",
+  "repository": "https://github.com/duochou042004/banking-core",
+  "license": "Apache-2.0",
+  "keywords": ["banking", "ledger", "fintech", "compliance", "csharp"]
+}
