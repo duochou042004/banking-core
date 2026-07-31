@@ -1,0 +1,4 @@
+interface:
+  display_name: "Govern Banking Core"
+  short_description: "Guard financial invariants and delivery evidence"
+  default_prompt: "Use $govern-banking-core to plan or review this banking-core change against the project invariants and evidence gates."

@@ -1,0 +1,27 @@
+# .NET build and test output
+**/bin/
+**/obj/
+artifacts/
+TestResults/
+coverage/
+*.trx
+
+# IDE and user state
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+appsettings.*.local.json
+secrets/
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+*~
+*.swp

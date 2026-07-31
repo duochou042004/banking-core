@@ -1,0 +1,27 @@
+{
+  "name": "banking-core-engineering",
+  "version": "0.1.0",
+  "description": "Guard financial invariants, risk controls, and delivery evidence while building the open Banking Core.",
+  "author": {
+    "name": "Banking Core contributors",
+    "url": "https://github.com/duochou042004"
+  },
+  "homepage": "https://github.com/duochou042004/banking-core",
+  "repository": "https://github.com/duochou042004/banking-core",
+  "license": "Apache-2.0",
+  "keywords": ["banking", "ledger", "fintech", "compliance", "csharp"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Banking Core Engineering",
+    "shortDescription": "Govern safe, evidence-backed banking-core changes.",
+    "longDescription": "A project workflow for planning and reviewing ledger, payments, security, compliance, data, and operations changes against Banking Core's invariants and release gates.",
+    "developerName": "Banking Core contributors",
+    "category": "Developer Tools",
+    "capabilities": [],
+    "defaultPrompt": [
+      "Plan this change against Banking Core invariants.",
+      "Review this proposal for financial and control risks.",
+      "Identify the evidence gates for this change."
+    ]
+  }
+}
