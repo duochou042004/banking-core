@@ -189,8 +189,8 @@ public sealed class LedgerPostingService
         }
         catch (LedgerRejectedException rejection)
         {
-            await RecordFailedReceiptAsync(scope, fingerprint, rejection.Error, cancellationToken).ConfigureAwait(false);
-            return new PostingResult(PostingOutcomeKind.Rejected, null, null, null, rejection.Error);
+            return await RecordFailedReceiptAsync(scope, fingerprint, rejection.Error, cancellationToken)
+                .ConfigureAwait(false);
         }
         catch (PostgresException exception) when (exception.SqlState == LedgerUnitOfWork.UniqueViolation
             && exception.ConstraintName == "idempotency_receipt_scope_unique")
@@ -215,8 +215,8 @@ public sealed class LedgerPostingService
             var error = new LedgerError(
                 LedgerErrorCode.JournalAlreadyReversed,
                 "The journal has already been reversed.");
-            await RecordFailedReceiptAsync(scope, fingerprint, error, cancellationToken).ConfigureAwait(false);
-            return new PostingResult(PostingOutcomeKind.Rejected, null, null, null, error);
+            return await RecordFailedReceiptAsync(scope, fingerprint, error, cancellationToken)
+                .ConfigureAwait(false);
         }
         catch (LedgerConcurrencyException exception)
         {
@@ -695,11 +695,17 @@ public sealed class LedgerPostingService
 
     /// <summary>
     /// Stores the terminal outcome of a deterministic rejection so a retry with the same key returns
-    /// the same answer instead of re-evaluating against changed state. Written in its own short
-    /// transaction because the posting transaction rolled back; a concurrent writer that got there
-    /// first wins, and its receipt is authoritative.
+    /// the same answer instead of re-evaluating against changed state, and returns the outcome the
+    /// caller should be told.
     /// </summary>
-    private async Task RecordFailedReceiptAsync(
+    /// <remarks>
+    /// The receipt is written in its own short transaction because the posting transaction rolled
+    /// back. A concurrent command holding the same key may have committed in the meantime, in which
+    /// case its receipt is authoritative and is returned instead of this rejection: reporting a
+    /// rejection for a key that already has a committed journal would tell the caller something the
+    /// ledger does not believe.
+    /// </remarks>
+    private async Task<PostingResult> RecordFailedReceiptAsync(
         IdempotencyScope scope,
         byte[] fingerprint,
         LedgerError error,
@@ -738,7 +744,15 @@ public sealed class LedgerPostingService
                     "A concurrent command already recorded a terminal outcome for operation {Operation}.",
                     scope.Operation);
             }
+
+            var committed = await ReadReceiptAsync(scope, cancellationToken).ConfigureAwait(false);
+            if (committed is not null)
+            {
+                return ResolveReceipt(committed, fingerprint);
+            }
         }
+
+        return new PostingResult(PostingOutcomeKind.Rejected, null, null, null, error);
     }
 
     private async Task<StoredReceipt?> ReadReceiptAsync(IdempotencyScope scope, CancellationToken cancellationToken) =>
