@@ -18,20 +18,28 @@ COMMENT ON SCHEMA ledger_projection IS
 -- range overlap test, so overlapping periods are rejected by the database rather than by policy.
 CREATE EXTENSION IF NOT EXISTS btree_gist;
 
+-- Roles are cluster-scoped, but the migrator's advisory lock is database-scoped: two databases on
+-- one cluster can migrate at the same time and both find the role missing. A check-then-create is
+-- therefore racy no matter how it is written, so creation catches the collision instead. Anything
+-- that touches a cluster-scoped object must be written this way.
 DO $$
+DECLARE
+    v_role text;
 BEGIN
-    IF NOT EXISTS (SELECT 1 FROM pg_roles WHERE rolname = 'banking_core_ledger_app') THEN
-        CREATE ROLE banking_core_ledger_app NOLOGIN;
-    END IF;
-    IF NOT EXISTS (SELECT 1 FROM pg_roles WHERE rolname = 'banking_core_admin_app') THEN
-        CREATE ROLE banking_core_admin_app NOLOGIN;
-    END IF;
-    IF NOT EXISTS (SELECT 1 FROM pg_roles WHERE rolname = 'banking_core_projection_app') THEN
-        CREATE ROLE banking_core_projection_app NOLOGIN;
-    END IF;
-    IF NOT EXISTS (SELECT 1 FROM pg_roles WHERE rolname = 'banking_core_readonly') THEN
-        CREATE ROLE banking_core_readonly NOLOGIN;
-    END IF;
+    FOREACH v_role IN ARRAY ARRAY[
+        'banking_core_ledger_app',
+        'banking_core_admin_app',
+        'banking_core_projection_app',
+        'banking_core_readonly'
+    ] LOOP
+        BEGIN
+            EXECUTE format('CREATE ROLE %I NOLOGIN', v_role);
+        EXCEPTION
+            WHEN duplicate_object OR unique_violation THEN
+                -- Another migration on this cluster created it first, which is the intended result.
+                NULL;
+        END;
+    END LOOP;
 END;
 $$;
 
