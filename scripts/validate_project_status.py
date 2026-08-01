@@ -556,11 +556,29 @@ def self_test(document: dict[str, Any], root: Path, roadmap: dict[str, tuple[str
     escaped_evidence["phases"][0]["evidence"][0]["ref"] = "../outside.md"
     cases.append(("evidence traversal", escaped_evidence, "escapes repository root"))
 
+    # Activate a phase that genuinely has no recorded transition. Targeting a fixed index would
+    # stop proving anything as soon as that phase legitimately acquired one.
+    recorded = {
+        transition.get("target_id")
+        for transition in document.get("transitions", [])
+        if transition.get("target_kind") == "phase"
+    }
+    unrecorded_index = next(
+        (
+            index
+            for index in reversed(range(len(document["phases"])))
+            if document["phases"][index].get("id") not in recorded
+            and document["phases"][index].get("status") == "not_started"
+        ),
+        None,
+    )
+    if unrecorded_index is None:
+        return ["self-test 'unrecorded lifecycle' has no phase without a transition to mutate"]
+
     unrecorded_start = copy.deepcopy(document)
-    unrecorded_start["phases"][1].update(
+    unrecorded_start["phases"][unrecorded_index].update(
         {"status": "in_progress", "gate_status": "in_progress", "started_on": document["updated_on"]}
     )
-    unrecorded_start["state"]["active_phase"] = "phase-1"
     cases.append(("unrecorded lifecycle", unrecorded_start, "requires a lifecycle transition"))
 
     failures: list[str] = []

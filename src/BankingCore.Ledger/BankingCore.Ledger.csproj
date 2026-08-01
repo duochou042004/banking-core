@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Ledger domain kernel. Pure domain model and invariants: no database, HTTP, or hosting
+    dependency. Architecture tests assert this project references no infrastructure package.
+  -->
+  <PropertyGroup>
+    <RootNamespace>BankingCore.Ledger</RootNamespace>
+  </PropertyGroup>
+
+</Project>
