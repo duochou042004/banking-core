@@ -27,6 +27,34 @@ The first implementation shape will be a modular monolith with enforceable bound
 - Authorization, tenant isolation, audit provenance, and segregation of duties are domain concerns, not UI conventions.
 - No compliance claim is made without a scoped control mapping and reproducible evidence.
 
+## Repository layout
+
+```text
+src/BankingCore.Ledger              Domain kernel: money, journals, invariants. No I/O.
+src/BankingCore.Ledger.Persistence  PostgreSQL schema, migrations, posting path, outbox,
+                                    projection, reconciliation.
+src/BankingCore.Api                 Authenticated administration and test API.
+tests/                              Unit and conformance vectors, architecture boundaries,
+                                    and database-backed integration evidence.
+docs/                               The control plane. Code conforms to it, not the reverse.
+```
+
+## Build and test
+
+Requires the .NET 10 LTS SDK and Podman. Integration tests start a real PostgreSQL 18 container; no daemon socket or extra configuration is needed.
+
+```bash
+dotnet test
+```
+
+That runs everything: unit and ledger conformance vectors, architecture boundary checks, database defence tests written in raw SQL, tenant isolation and privilege negative tests, concurrency tests, delivery and projection tests, HTTP contract tests, and a seeded generative comparison against an independent reference model. The most recent result is recorded in [the slice evidence](docs/delivery/evidence/2026-08-01-phase-1-slice-1.md).
+
+The progress contract is validated separately:
+
+```bash
+python3 scripts/validate_project_status.py --self-test
+```
+
 ## Start here
 
 - [Documentation map](docs/README.md)

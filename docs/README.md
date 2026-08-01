@@ -11,9 +11,10 @@ This directory is the project control plane. Documents define why the system exi
 | Change ledger or balances | [Ledger constitution](architecture/ledger.md), [data and consistency](architecture/data-and-consistency.md), ADR-0003 |
 | Add/change an API or event | [Integration architecture](architecture/integration.md), [testing strategy](delivery/testing-strategy.md) |
 | Security/privacy/compliance | [Threat model](security/security-and-threat-model.md), [compliance](security/compliance-and-privacy.md), [control matrix](security/control-matrix.md) |
-| Platform/dependency choice | [Technology strategy](architecture/technology-strategy.md), [decision records](decisions/README.md) |
-| Plan or review work | [Current status](../project-status.json), [progress rules](delivery/progress-tracking.md), [agent harness](agents/harness.md), [evaluations](agents/evaluations.md), [agent extensions](agents/agent-extensions.md), [roadmap](delivery/roadmap.md) |
-| Operate/recover | [Reliability](operations/reliability.md), runbook template |
+| Platform/dependency choice | [Technology strategy](architecture/technology-strategy.md), [dependency register](architecture/dependency-register.md), [decision records](decisions/README.md) |
+| Plan or review work | [Current status](../project-status.json), [progress rules](delivery/progress-tracking.md), [agent harness](agents/harness.md), [evaluations](agents/evaluations.md), [agent extensions](agents/agent-extensions.md), [roadmap](delivery/roadmap.md), [task packets](delivery/task-packets/README.md) |
+| Operate/recover | [Reliability](operations/reliability.md), [runbooks](operations/runbooks/), runbook template |
+| Judge whether a claim is supported | [Evidence records](delivery/evidence/) |
 
 ## Information architecture
 
@@ -21,7 +22,7 @@ This directory is the project control plane. Documents define why the system exi
 - `research/`: dated findings and authoritative source register.
 - `architecture/`: target system, domains, ledger, consistency, integrations, and technology policy.
 - `security/`: threat model, compliance/privacy posture, and controls/evidence.
-- `delivery/`: staged roadmap, machine-readable progress contract, test strategy, and release gates.
+- `delivery/`: staged roadmap, machine-readable progress contract, test strategy, release gates, task packets, and evidence records.
 - `operations/`: reliability, resilience, and service management requirements.
 - `agents/`: AI/human task harness and adversarial evaluation scenarios.
 - `decisions/`: accepted and proposed architecture decision records.

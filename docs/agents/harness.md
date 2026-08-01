@@ -84,15 +84,20 @@ Use each agent surface for one job:
 - MCP is reserved for authenticated access to systems outside the repository; never embed credentials in skills or plugin manifests.
 - Tests, analyzers, constraints, CI, and reviewed hooks enforce deterministic rules. Instructions explain them but are not enforcement.
 
-## Phase 0 validation commands
+## Validation commands
 
-Until a code harness exists, validate repository docs and agent packages with:
+Code changes. Requires the .NET 10 LTS SDK and Podman on `PATH`; integration tests start a real PostgreSQL 18 container and need no daemon socket.
 
-- `python3 scripts/validate_project_status.py --self-test`;
-- search for `TODO`, placeholder text, broken relative links, and conflicting phase/status statements;
-- skill validation on the canonical skill and both host adapters;
-- Codex and Claude plugin/marketplace validation where their CLIs are available;
-- JSON/YAML parsing for manifests;
-- Git status/diff review and GitHub remote/default-branch verification.
+- `dotnet restore` — resolves the centrally pinned graph and runs the vulnerability audit. NU1901 through NU1904 are errors. Pin a patched transitive version; do not suppress the audit.
+- `dotnet build` — nullable reference types, recommended analysers, and warnings as errors. Do not silence a rule to make a change pass; if a rule is genuinely wrong for this codebase, change the policy in `Directory.Build.props` with a comment saying why.
+- `dotnet test` — the whole suite: unit and ledger conformance vectors, architecture boundaries, database defences written in raw SQL, tenant isolation and privilege negative tests, concurrency, delivery and projection, HTTP contract, and the seeded generative model comparison. Read the raw output, not only the exit code.
+- Run `dotnet test` more than once before claiming a financial change is stable. Concurrency and provisioning defects in this codebase have been intermittent, and both defects found during the first slice were caught by repetition rather than by a single green run.
 
-Phase 1 replaces this section with exact restore/build/test/lint/scan commands or routes to a maintained command reference.
+Repository and progress artifacts, at every phase.
+
+- `python3 scripts/validate_project_status.py --self-test` — validates the snapshot against the roadmap and proves the validator itself fails closed.
+- Search for `TODO`, placeholder text, broken relative links, and conflicting phase or status statements.
+- Skill validation on the canonical skill and both host adapters; Codex and Claude plugin and marketplace validation where their CLIs are available; JSON and YAML parsing for manifests.
+- Git status and diff review, and remote and default-branch verification.
+
+Evidence discipline: a passing suite is a result, not a claim. Record the command, tool and database versions, source revision, and raw output in an [evidence record](../delivery/evidence/) before asserting that a gate is met, and state what the run does **not** cover.

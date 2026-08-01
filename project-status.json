@@ -1,17 +1,17 @@
 {
   "$schema": "./docs/delivery/project-status.schema.json",
   "schema_version": 1,
-  "revision": 1,
+  "revision": 2,
   "updated_on": "2026-08-01",
-  "updated_by": "Codex",
-  "change_summary": "Initialized evidence-backed progress tracking without advancing the roadmap.",
+  "updated_by": "Repository owner",
+  "change_summary": "Started Phase 1 and met the phase-1-entry milestone: the bounded first slice is implemented with linked reproducible evidence. The Phase 1 exit gate is not met and no independent review has been obtained.",
   "project": {
     "name": "Banking Core",
     "repository": "https://github.com/duochou042004/banking-core",
     "roadmap": "docs/delivery/roadmap.md"
   },
   "state": {
-    "active_phase": null,
+    "active_phase": "phase-1",
     "last_completed_phase": "phase-0",
     "next_phase": "phase-1"
   },
@@ -39,11 +39,27 @@
     {
       "id": "phase-1",
       "title": "Executable financial kernel",
-      "status": "not_started",
-      "gate_status": "not_assessed",
-      "started_on": null,
+      "status": "in_progress",
+      "gate_status": "in_progress",
+      "started_on": "2026-08-01",
       "completed_on": null,
-      "evidence": []
+      "evidence": [
+        {
+          "kind": "document",
+          "ref": "docs/delivery/task-packets/2026-08-01-ledger-kernel-slice-1.md",
+          "description": "Task packet defining the bounded first slice, its risk class, and what is deliberately excluded."
+        },
+        {
+          "kind": "test",
+          "ref": "docs/delivery/evidence/2026-08-01-phase-1-slice-1.md",
+          "description": "Reproducible run of 149 tests against PostgreSQL 18.4, with the claims it does not support stated explicitly."
+        },
+        {
+          "kind": "revision",
+          "ref": "https://github.com/duochou042004/banking-core/commit/01cd1e39731ca6dc658882d011c918824ae4f58c",
+          "description": "Source revision the slice evidence was produced from."
+        }
+      ]
     },
     {
       "id": "phase-2",
@@ -105,11 +121,43 @@
       "id": "phase-1-entry",
       "phase_id": "phase-1",
       "title": "Authorize the executable financial kernel",
-      "status": "not_started",
+      "status": "complete",
       "acceptance_criteria": [
         "An explicitly authorized task advances Phase 1.",
         "The task packet defines the bounded first slice and its risk class.",
         "The Phase 1 evidence plan covers ledger invariants, recovery, security, and operations."
+      ],
+      "completed_on": "2026-08-01",
+      "evidence": [
+        {
+          "kind": "document",
+          "ref": "docs/delivery/task-packets/2026-08-01-ledger-kernel-slice-1.md",
+          "description": "Authorized task packet: outcome, scope, out-of-scope, R3 risk class, affected invariants, assumptions, acceptance and failure cases, and the evidence plan."
+        },
+        {
+          "kind": "document",
+          "ref": "docs/decisions/0006-posting-protocol-and-defence-in-depth.md",
+          "description": "Accepted decision record for the posting protocol and the independent database defences the slice relies on."
+        },
+        {
+          "kind": "test",
+          "ref": "docs/delivery/evidence/2026-08-01-phase-1-slice-1.md",
+          "description": "Executed evidence for the slice, including the defects found while producing it and the claims it does not support."
+        }
+      ]
+    },
+    {
+      "id": "phase-1-exit",
+      "phase_id": "phase-1",
+      "title": "Meet the Phase 1 exit gate for the executable financial kernel",
+      "status": "not_started",
+      "acceptance_criteria": [
+        "Two independent qualified approvals are recorded for the protected ledger change.",
+        "Backup and point-in-time restore are followed by a full ledger reconciliation on a durably configured instance.",
+        "Crash-point and recovery evidence covers each step of the atomic posting boundary and outbox recovery.",
+        "A threat model and tailored ASVS tests exist for the slice.",
+        "Benchmark methodology and results are published without unqualified scale claims.",
+        "SBOM, provenance and signing draft, and operator runbooks beyond migration are produced."
       ],
       "completed_on": null,
       "evidence": []
@@ -117,7 +165,7 @@
   ],
   "next_gate": {
     "kind": "milestone",
-    "id": "phase-1-entry"
+    "id": "phase-1-exit"
   },
   "blockers": [],
   "transitions": [
@@ -139,6 +187,59 @@
           "kind": "revision",
           "ref": "https://github.com/duochou042004/banking-core/commit/fc96228bacf86501bcad7779db4618f9f7a260aa",
           "description": "Identifies the validated public foundation revision."
+        }
+      ]
+    },
+    {
+      "id": "2026-08-01-phase-1-started",
+      "target_kind": "phase",
+      "target_id": "phase-1",
+      "from": "not_started",
+      "to": "in_progress",
+      "on": "2026-08-01",
+      "summary": "Phase 1 started under an explicitly authorized task that bounds the work to the first vertical slice of the ledger kernel.",
+      "evidence": [
+        {
+          "kind": "document",
+          "ref": "docs/delivery/task-packets/2026-08-01-ledger-kernel-slice-1.md",
+          "description": "The authorizing task packet and its scope boundaries."
+        }
+      ]
+    },
+    {
+      "id": "2026-08-01-phase-1-entry-started",
+      "target_kind": "milestone",
+      "target_id": "phase-1-entry",
+      "from": "not_started",
+      "to": "in_progress",
+      "on": "2026-08-01",
+      "summary": "Work began on the phase-1-entry milestone once the task packet and the governing decision records were written.",
+      "evidence": [
+        {
+          "kind": "document",
+          "ref": "docs/decisions/0005-integer-atomic-unit-money-representation.md",
+          "description": "Money representation decision taken before the posting path was implemented."
+        }
+      ]
+    },
+    {
+      "id": "2026-08-01-phase-1-entry-complete",
+      "target_kind": "milestone",
+      "target_id": "phase-1-entry",
+      "from": "in_progress",
+      "to": "complete",
+      "on": "2026-08-01",
+      "summary": "The bounded first slice is implemented and its evidence is reproducible: 149 tests against PostgreSQL 18.4 covering ledger invariants, database defences, tenant isolation and privilege separation, concurrency, delivery semantics, the HTTP contract, and a generative comparison against an independent reference model. Phase 1 exit is not claimed; independent review, durability, performance, supply-chain, and threat-model evidence remain outstanding.",
+      "evidence": [
+        {
+          "kind": "test",
+          "ref": "docs/delivery/evidence/2026-08-01-phase-1-slice-1.md",
+          "description": "Named reproducible evidence with tool versions, artifact digests, raw result, defects found, and an explicit statement of what it does not show."
+        },
+        {
+          "kind": "revision",
+          "ref": "https://github.com/duochou042004/banking-core/commit/01cd1e39731ca6dc658882d011c918824ae4f58c",
+          "description": "Source revision the evidence was produced from."
         }
       ]
     }
