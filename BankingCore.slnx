@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/BankingCore.Api/BankingCore.Api.csproj" />
+    <Project Path="src/BankingCore.Ledger.Persistence/BankingCore.Ledger.Persistence.csproj" />
+    <Project Path="src/BankingCore.Ledger/BankingCore.Ledger.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/BankingCore.ArchitectureTests/BankingCore.ArchitectureTests.csproj" />
+    <Project Path="tests/BankingCore.Ledger.IntegrationTests/BankingCore.Ledger.IntegrationTests.csproj" />
+    <Project Path="tests/BankingCore.Ledger.UnitTests/BankingCore.Ledger.UnitTests.csproj" />
+  </Folder>
+</Solution>
