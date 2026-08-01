@@ -2,6 +2,8 @@
 
 The roadmap is capability- and evidence-gated, not date-driven. A phase exits only when its artifacts are reviewed and reproducible. Scope may be split into smaller releases, but gates may not be silently deferred into production.
 
+This document is the authority for phase outcomes and gates. [`project-status.json`](../../project-status.json) is the machine-readable current-state snapshot and is maintained under the [progress tracking rules](progress-tracking.md).
+
 ## Phase 0 — Foundation (complete 2026-07-31)
 
 Outcome: a public repository with shared language, researched decisions, risk boundaries, delivery process, and agent guidance.

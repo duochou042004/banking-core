@@ -10,7 +10,7 @@
       "name": "banking-core-engineering",
       "source": "./plugins/banking-core-engineering",
       "description": "Guard financial invariants, risk controls, and delivery evidence while building the open Banking Core.",
-      "version": "0.2.0",
+      "version": "0.3.0",
       "category": "Developer Tools",
       "strict": true
     }

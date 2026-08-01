@@ -6,6 +6,10 @@ TestResults/
 coverage/
 *.trx
 
+# Python validation tooling
+__pycache__/
+*.py[cod]
+
 # IDE and user state
 .vs/
 .vscode/

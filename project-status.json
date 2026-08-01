@@ -1,0 +1,146 @@
+{
+  "$schema": "./docs/delivery/project-status.schema.json",
+  "schema_version": 1,
+  "revision": 1,
+  "updated_on": "2026-08-01",
+  "updated_by": "Codex",
+  "change_summary": "Initialized evidence-backed progress tracking without advancing the roadmap.",
+  "project": {
+    "name": "Banking Core",
+    "repository": "https://github.com/duochou042004/banking-core",
+    "roadmap": "docs/delivery/roadmap.md"
+  },
+  "state": {
+    "active_phase": null,
+    "last_completed_phase": "phase-0",
+    "next_phase": "phase-1"
+  },
+  "phases": [
+    {
+      "id": "phase-0",
+      "title": "Foundation",
+      "status": "complete",
+      "gate_status": "met",
+      "started_on": null,
+      "completed_on": "2026-07-31",
+      "evidence": [
+        {
+          "kind": "document",
+          "ref": "docs/delivery/roadmap.md",
+          "description": "Records the Phase 0 exit evidence and gate result."
+        },
+        {
+          "kind": "revision",
+          "ref": "https://github.com/duochou042004/banking-core/commit/fc96228bacf86501bcad7779db4618f9f7a260aa",
+          "description": "Public foundation revision with the shared agent setup and reviewed control documents."
+        }
+      ]
+    },
+    {
+      "id": "phase-1",
+      "title": "Executable financial kernel",
+      "status": "not_started",
+      "gate_status": "not_assessed",
+      "started_on": null,
+      "completed_on": null,
+      "evidence": []
+    },
+    {
+      "id": "phase-2",
+      "title": "Account servicing",
+      "status": "not_started",
+      "gate_status": "not_assessed",
+      "started_on": null,
+      "completed_on": null,
+      "evidence": []
+    },
+    {
+      "id": "phase-3",
+      "title": "Payment orchestration and reconciliation",
+      "status": "not_started",
+      "gate_status": "not_assessed",
+      "started_on": null,
+      "completed_on": null,
+      "evidence": []
+    },
+    {
+      "id": "phase-4",
+      "title": "Product engine and general-ledger integration",
+      "status": "not_started",
+      "gate_status": "not_assessed",
+      "started_on": null,
+      "completed_on": null,
+      "evidence": []
+    },
+    {
+      "id": "phase-5",
+      "title": "Compliance ecosystem",
+      "status": "not_started",
+      "gate_status": "not_assessed",
+      "started_on": null,
+      "completed_on": null,
+      "evidence": []
+    },
+    {
+      "id": "phase-6",
+      "title": "Production hardening and controlled pilot",
+      "status": "not_started",
+      "gate_status": "not_assessed",
+      "started_on": null,
+      "completed_on": null,
+      "evidence": []
+    },
+    {
+      "id": "phase-7",
+      "title": "Ecosystem expansion",
+      "status": "not_started",
+      "gate_status": "not_assessed",
+      "started_on": null,
+      "completed_on": null,
+      "evidence": []
+    }
+  ],
+  "milestones": [
+    {
+      "id": "phase-1-entry",
+      "phase_id": "phase-1",
+      "title": "Authorize the executable financial kernel",
+      "status": "not_started",
+      "acceptance_criteria": [
+        "An explicitly authorized task advances Phase 1.",
+        "The task packet defines the bounded first slice and its risk class.",
+        "The Phase 1 evidence plan covers ledger invariants, recovery, security, and operations."
+      ],
+      "completed_on": null,
+      "evidence": []
+    }
+  ],
+  "next_gate": {
+    "kind": "milestone",
+    "id": "phase-1-entry"
+  },
+  "blockers": [],
+  "transitions": [
+    {
+      "id": "2026-07-31-phase-0-complete",
+      "target_kind": "phase",
+      "target_id": "phase-0",
+      "from": "in_progress",
+      "to": "complete",
+      "on": "2026-07-31",
+      "summary": "Phase 0 exit gate met after the foundation and shared agent control plane were validated and published.",
+      "evidence": [
+        {
+          "kind": "document",
+          "ref": "docs/delivery/roadmap.md",
+          "description": "Records the exit gate assessment."
+        },
+        {
+          "kind": "revision",
+          "ref": "https://github.com/duochou042004/banking-core/commit/fc96228bacf86501bcad7779db4618f9f7a260aa",
+          "description": "Identifies the validated public foundation revision."
+        }
+      ]
+    }
+  ]
+}

@@ -20,6 +20,7 @@ A task has an owner, outcome, scope/out-of-scope, risk class, affected invariant
 All changes:
 
 - clean, minimal diff and updated source-of-truth documentation;
+- `project-status.json` reviewed and updated in the same change when tracked state, evidence, blockers, or the next gate changed;
 - tests/checks appropriate to behavior and no unexplained warning;
 - dependency/license/secrets review;
 - no real sensitive data in code, fixtures, logs, or artifacts;

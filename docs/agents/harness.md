@@ -22,10 +22,11 @@ Do not fill material unknowns with confident guesses. Research read-only facts a
 ## Context routing
 
 1. Read root `AGENTS.md`.
-2. Read `docs/README.md` and only the task-relevant source documents.
-3. Search decisions for the affected topic and check whether one is Proposed, Accepted, or Superseded.
-4. Inspect the current implementation/tests/config when they exist; documentation is not proof that code conforms.
-5. Use the `govern-banking-core` project skill for planning or reviewing material changes (`$govern-banking-core` in Codex, `/govern-banking-core` in Claude Code).
+2. Read `project-status.json`, its next gate, and the corresponding roadmap evidence requirements.
+3. Read `docs/README.md` and only the task-relevant source documents.
+4. Search decisions for the affected topic and check whether one is Proposed, Accepted, or Superseded.
+5. Inspect the current implementation/tests/config when they exist; documentation is not proof that code conforms.
+6. Use the `govern-banking-core` project skill for planning or reviewing material changes (`$govern-banking-core` in Codex, `/govern-banking-core` in Claude Code).
 
 Avoid loading every document into context. Quote/link the precise invariant/control in the task or PR so reviewers can trace it.
 
@@ -53,7 +54,7 @@ Ask how the change fails under malicious input, compromised identity, cross-tena
 
 ### 6. Handoff
 
-Lead with outcome. List changed source-of-truth documents/code, decisions, tests/evidence, migrations/operations, residual risks, and exact next gate. Do not say “done” when required evidence or an approved decision is missing.
+Lead with outcome. List changed source-of-truth documents/code, decisions, tests/evidence, migrations/operations, residual risks, and exact next gate. Review `project-status.json`; update it atomically under the progress rules if tracked state changed, or say why no update was required. Do not say “done” when required evidence or an approved decision is missing.
 
 ## Protected-change stop rules
 
@@ -87,6 +88,7 @@ Use each agent surface for one job:
 
 Until a code harness exists, validate repository docs and agent packages with:
 
+- `python3 scripts/validate_project_status.py --self-test`;
 - search for `TODO`, placeholder text, broken relative links, and conflicting phase/status statements;
 - skill validation on the canonical skill and both host adapters;
 - Codex and Claude plugin/marketplace validation where their CLIs are available;

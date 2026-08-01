@@ -1,6 +1,6 @@
 # Banking Core
 
-Banking Core is a planned, open-source financial core for banks, e-wallets, and regulated financial platforms. The working language is C# on .NET. **Foundation phase completed on 2026-07-31; implementation has not started.** Architecture, financial invariants, security, compliance mapping, delivery gates, and agent operating rules now precede product code.
+Banking Core is a planned, open-source financial core for banks, e-wallets, and regulated financial platforms. The working language is C# on .NET. The evidence-backed current state is published in [`project-status.json`](project-status.json). Architecture, financial invariants, security, compliance mapping, delivery gates, and agent operating rules precede product code.
 
 This repository is not a demo, a reference toy, or a claim of regulatory certification. It is intended to become production-capable software through staged delivery, independent review, reproducible evidence, and jurisdiction-specific validation.
 
@@ -36,6 +36,7 @@ The first implementation shape will be a modular monolith with enforceable bound
 - [Security and threat model](docs/security/security-and-threat-model.md)
 - [Compliance and privacy](docs/security/compliance-and-privacy.md)
 - [Delivery roadmap](docs/delivery/roadmap.md)
+- [Current progress](project-status.json) and [tracking rules](docs/delivery/progress-tracking.md)
 - [Agent harness](docs/agents/harness.md)
 - [Agent extensions](docs/agents/agent-extensions.md)
 - [Research report](docs/research/foundation-study-2026-07-31.md)
@@ -48,7 +49,7 @@ As of 2026-07-31, the adopted starting baseline is .NET 10 LTS/C# 14 and Postgre
 
 ## Status and safety
 
-There is no runnable banking product in this repository yet. Do not use it to store real customer, payment-card, identity, authentication, or financial data. The roadmap defines the evidence required before any claim such as “production ready,” “PCI compliant,” or “bank grade” may be made.
+Consult [`project-status.json`](project-status.json) for the current delivery state. Unless the repository contains a release that has passed the applicable roadmap gates, do not use it to store real customer, payment-card, identity, authentication, or financial data. The roadmap defines the evidence required before any claim such as “production ready,” “PCI compliant,” or “bank grade” may be made.
 
 ## License
 

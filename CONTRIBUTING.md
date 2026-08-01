@@ -7,8 +7,9 @@ Thank you for helping build Banking Core. Correctness, reviewability, and operat
 1. Start with an issue or RFC for behavior that affects financial semantics, public contracts, data models, security boundaries, compliance controls, or deployment topology.
 2. Describe the user or operator outcome, failure modes, abuse cases, invariants, compatibility impact, and evidence plan.
 3. Keep pull requests small enough for a reviewer to understand the full risk surface.
-4. Complete the pull request checklist and attach test, migration, security, and operational evidence appropriate to the risk class.
-5. Respond to review by improving the design or evidence; do not bypass or dilute gates.
+4. Review [`project-status.json`](project-status.json) and update it under the [progress tracking rules](docs/delivery/progress-tracking.md) if the contribution changes a tracked stage, blocker, evidence assessment, or next gate.
+5. Complete the pull request checklist and attach test, migration, security, and operational evidence appropriate to the risk class.
+6. Respond to review by improving the design or evidence; do not bypass or dilute gates.
 
 Use the templates in [docs/templates](docs/templates) and the workflow in [docs/agents/harness.md](docs/agents/harness.md).
 

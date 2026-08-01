@@ -26,6 +26,7 @@ Use `Not applicable` with a reason; do not leave material fields blank.
 - [ ] Security, dependency, license and sensitive-data checks pass
 - [ ] Telemetry, alerts and runbooks are updated
 - [ ] Documentation and control mappings are updated
+- [ ] `project-status.json` was reviewed and updated if tracked state changed (or marked not applicable with a reason)
 - [ ] Raw evidence/artifact links and environment/version are included
 - [ ] Two qualified approvals are assigned for R3
 

@@ -1,6 +1,6 @@
 # Agent extensions and distribution
 
-The repository supports Codex and Claude Code without making either agent the source of project truth. `AGENTS.md`, the documents under `docs/`, and the canonical workflow inside `plugins/banking-core-engineering` are authoritative. Host-specific files only make that guidance discoverable or installable.
+The repository supports Codex and Claude Code without making either agent the source of project truth. `AGENTS.md`, `project-status.json`, the documents under `docs/`, and the canonical workflow inside `plugins/banking-core-engineering` are authoritative. Host-specific files only make that guidance discoverable or installable.
 
 ## Why the directories are separate
 
@@ -74,6 +74,7 @@ Start a new session or reload plugins after installation. Claude namespaces inst
 - Keep the complete workflow only in the packaged skill. Host adapters must remain short and must point to it.
 - Keep the adapter names and descriptions equal to the canonical skill so implicit discovery remains consistent.
 - Keep the Codex and Claude plugin manifest versions in lockstep for a shared package release.
+- Keep progress-update instructions in the canonical skill aligned with `docs/delivery/progress-tracking.md`; CI validates the snapshot independently of either host.
 - Keep plugin component paths within `plugins/banking-core-engineering`; installed plugins are cached and cannot rely on arbitrary repository-relative files.
 - Add hooks, MCP servers, permissions, subagents, or scripts only for a demonstrated workflow and review their trust boundary before enabling them.
 - Validate both project adapters, the canonical skill, both manifests, both marketplaces, relative Markdown links, and packaging paths before commit.

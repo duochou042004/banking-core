@@ -12,7 +12,7 @@ This directory is the project control plane. Documents define why the system exi
 | Add/change an API or event | [Integration architecture](architecture/integration.md), [testing strategy](delivery/testing-strategy.md) |
 | Security/privacy/compliance | [Threat model](security/security-and-threat-model.md), [compliance](security/compliance-and-privacy.md), [control matrix](security/control-matrix.md) |
 | Platform/dependency choice | [Technology strategy](architecture/technology-strategy.md), [decision records](decisions/README.md) |
-| Plan or review work | [Agent harness](agents/harness.md), [evaluations](agents/evaluations.md), [agent extensions](agents/agent-extensions.md), [roadmap](delivery/roadmap.md) |
+| Plan or review work | [Current status](../project-status.json), [progress rules](delivery/progress-tracking.md), [agent harness](agents/harness.md), [evaluations](agents/evaluations.md), [agent extensions](agents/agent-extensions.md), [roadmap](delivery/roadmap.md) |
 | Operate/recover | [Reliability](operations/reliability.md), runbook template |
 
 ## Information architecture
@@ -21,7 +21,7 @@ This directory is the project control plane. Documents define why the system exi
 - `research/`: dated findings and authoritative source register.
 - `architecture/`: target system, domains, ledger, consistency, integrations, and technology policy.
 - `security/`: threat model, compliance/privacy posture, and controls/evidence.
-- `delivery/`: staged roadmap, test strategy, and release gates.
+- `delivery/`: staged roadmap, machine-readable progress contract, test strategy, and release gates.
 - `operations/`: reliability, resilience, and service management requirements.
 - `agents/`: AI/human task harness and adversarial evaluation scenarios.
 - `decisions/`: accepted and proposed architecture decision records.

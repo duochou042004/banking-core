@@ -5,9 +5,10 @@ These rules apply to the whole repository. Keep this file small; detailed policy
 ## Before changing anything
 
 1. Read [docs/README.md](docs/README.md) and route to the documents relevant to the task.
-2. Check the active phase and its exit gate in [docs/delivery/roadmap.md](docs/delivery/roadmap.md).
+2. Check the machine-readable [project status](project-status.json), then its governing exit gate in [docs/delivery/roadmap.md](docs/delivery/roadmap.md).
 3. Classify the change using [docs/agents/harness.md](docs/agents/harness.md). State assumptions and out-of-scope items.
 4. For architecture, ledger, security, privacy, compliance, public contract, or migration changes, create or update an ADR/RFC before implementation.
+5. Review and update `project-status.json` when a tracked phase, milestone, blocker, evidence assessment, or next gate changes; follow [progress tracking](docs/delivery/progress-tracking.md).
 
 ## Financial safety rules
 
@@ -37,6 +38,6 @@ These rules apply to the whole repository. Keep this file small; detailed policy
 - Testing and release evidence: [docs/delivery/quality-gates.md](docs/delivery/quality-gates.md), [docs/delivery/testing-strategy.md](docs/delivery/testing-strategy.md)
 - Reusable agent workflow: use `$govern-banking-core` in Codex or `/govern-banking-core` in Claude Code; see [agent extensions](docs/agents/agent-extensions.md)
 
-## Current phase
+## Progress discipline
 
-Phase 0 completed on 2026-07-31. Phase 1 has not started. Product code may begin only when a task explicitly advances Phase 1 with a task packet and the first-slice gates in the roadmap. Configuration, templates, manifests, research, and documentation maintenance remain allowed.
+`project-status.json` is the only current-state snapshot; do not duplicate its values in agent guidance. Product code may begin only when an explicitly authorized task advances Phase 1 with a task packet and the first-slice gates in the roadmap. Configuration, templates, manifests, research, and documentation maintenance remain allowed before that transition.

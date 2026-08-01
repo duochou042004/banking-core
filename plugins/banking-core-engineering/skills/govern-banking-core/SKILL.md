@@ -9,7 +9,7 @@ Protect financial integrity while keeping changes small and reviewable. Treat re
 
 ## Workflow
 
-1. Locate the repository root and read `AGENTS.md` plus `docs/README.md`.
+1. Locate the repository root and read `AGENTS.md`, `project-status.json`, and `docs/README.md`; identify the next gate before planning work.
 2. Read only task-relevant normative documents and accepted/superseding ADRs. For ledger work, always read `docs/architecture/ledger.md` and `docs/architecture/data-and-consistency.md`.
 3. Write the task packet from `docs/agents/harness.md`: outcome, scope, risk class, affected invariants/controls/contracts, assumptions, acceptance/failure cases, evidence, migration/operations.
 4. Classify ledger/money, identity/authorization, cryptography, tenant isolation, destructive migration, audit/retention, and release trust as protected (R3).
@@ -18,7 +18,8 @@ Protect financial integrity while keeping changes small and reviewable. Treat re
 7. Implement the smallest coherent change and preserve database/domain defenses. Never weaken a gate to make the change pass.
 8. Verify with the risk-appropriate matrix in `docs/delivery/testing-strategy.md`; inspect raw evidence and recompute financial outcomes from immutable facts.
 9. Perform the adversarial review in the harness. Require an independent qualified human approval for protected changes.
-10. Handoff with outcome, changed sources of truth, decisions, tests/evidence, migration/operations, residual risks, and the next gate.
+10. Review the progress snapshot before handoff. When a tracked phase, milestone, blocker, evidence assessment, or next gate changed, update `project-status.json` under `docs/delivery/progress-tracking.md` and run `python3 scripts/validate_project_status.py --self-test`.
+11. Handoff with outcome, changed sources of truth, decisions, tests/evidence, migration/operations, residual risks, and the next gate.
 
 ## Non-negotiable checks
 
@@ -26,6 +27,7 @@ Protect financial integrity while keeping changes small and reviewable. Treat re
 - Treat duplicate, reorder, timeout, crash, concurrency, backdating, period close, and reconciliation as normal paths.
 - Bind every access to principal/workload and tenant/legal-entity scope; minimize restricted data in ledger, contracts, telemetry, tests, and evidence.
 - Use established identity and cryptographic standards/providers. Do not invent protocols or claim compliance from architecture alone.
+- Never mark a tracked stage complete without its gate evidence and a recorded transition; never substitute a percent-complete estimate for gate state.
 - Stop for qualified decisions when legal/accounting interpretation, public compatibility, irreversible data, or production authority is unresolved.
 
 Use `docs/agents/evaluations.md` to challenge proposed shortcuts or review updates to this skill.

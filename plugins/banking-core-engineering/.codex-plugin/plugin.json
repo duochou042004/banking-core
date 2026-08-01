@@ -1,6 +1,6 @@
 {
   "name": "banking-core-engineering",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Guard financial invariants, risk controls, and delivery evidence while building the open Banking Core.",
   "author": {
     "name": "Banking Core contributors",

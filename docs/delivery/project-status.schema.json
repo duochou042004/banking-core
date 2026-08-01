@@ -1,0 +1,312 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/duochou042004/banking-core/blob/main/docs/delivery/project-status.schema.json",
+  "title": "Banking Core project status",
+  "description": "Evidence-backed roadmap and milestone state. Percent-complete fields are intentionally unsupported.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "schema_version",
+    "revision",
+    "updated_on",
+    "updated_by",
+    "change_summary",
+    "project",
+    "state",
+    "phases",
+    "milestones",
+    "next_gate",
+    "blockers",
+    "transitions"
+  ],
+  "properties": {
+    "$schema": {
+      "const": "./docs/delivery/project-status.schema.json"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "updated_on": {
+      "$ref": "#/$defs/date"
+    },
+    "updated_by": {
+      "$ref": "#/$defs/nonEmptyString"
+    },
+    "change_summary": {
+      "$ref": "#/$defs/nonEmptyString"
+    },
+    "project": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "repository", "roadmap"],
+      "properties": {
+        "name": {
+          "const": "Banking Core"
+        },
+        "repository": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://"
+        },
+        "roadmap": {
+          "const": "docs/delivery/roadmap.md"
+        }
+      }
+    },
+    "state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["active_phase", "last_completed_phase", "next_phase"],
+      "properties": {
+        "active_phase": {
+          "$ref": "#/$defs/nullablePhaseId"
+        },
+        "last_completed_phase": {
+          "$ref": "#/$defs/nullablePhaseId"
+        },
+        "next_phase": {
+          "$ref": "#/$defs/nullablePhaseId"
+        }
+      }
+    },
+    "phases": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8,
+      "items": {
+        "$ref": "#/$defs/phase"
+      }
+    },
+    "milestones": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/milestone"
+      }
+    },
+    "next_gate": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "id"],
+          "properties": {
+            "kind": {
+              "const": "milestone"
+            },
+            "id": {
+              "$ref": "#/$defs/id"
+            }
+          }
+        }
+      ]
+    },
+    "blockers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/blocker"
+      }
+    },
+    "transitions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/transition"
+      }
+    }
+  },
+  "$defs": {
+    "nonEmptyString": {
+      "type": "string",
+      "minLength": 1
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "phaseId": {
+      "type": "string",
+      "pattern": "^phase-[0-7]$"
+    },
+    "nullablePhaseId": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/phaseId"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "nullableDate": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/date"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "lifecycleStatus": {
+      "enum": ["not_started", "in_progress", "blocked", "complete"]
+    },
+    "gateStatus": {
+      "enum": ["not_assessed", "in_progress", "blocked", "met"]
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "ref", "description"],
+      "properties": {
+        "kind": {
+          "enum": ["artifact", "document", "revision", "test", "review"]
+        },
+        "ref": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "description": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      }
+    },
+    "phase": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "status", "gate_status", "started_on", "completed_on", "evidence"],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/phaseId"
+        },
+        "title": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "status": {
+          "$ref": "#/$defs/lifecycleStatus"
+        },
+        "gate_status": {
+          "$ref": "#/$defs/gateStatus"
+        },
+        "started_on": {
+          "$ref": "#/$defs/nullableDate"
+        },
+        "completed_on": {
+          "$ref": "#/$defs/nullableDate"
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidence"
+          }
+        }
+      }
+    },
+    "milestone": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "phase_id", "title", "status", "acceptance_criteria", "completed_on", "evidence"],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "phase_id": {
+          "$ref": "#/$defs/phaseId"
+        },
+        "title": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "status": {
+          "$ref": "#/$defs/lifecycleStatus"
+        },
+        "acceptance_criteria": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/nonEmptyString"
+          }
+        },
+        "completed_on": {
+          "$ref": "#/$defs/nullableDate"
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidence"
+          }
+        }
+      }
+    },
+    "blocker": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "target_kind", "target_id", "summary", "owner", "opened_on", "resolution_condition"],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "target_kind": {
+          "enum": ["phase", "milestone"]
+        },
+        "target_id": {
+          "$ref": "#/$defs/id"
+        },
+        "summary": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "owner": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "opened_on": {
+          "$ref": "#/$defs/date"
+        },
+        "resolution_condition": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      }
+    },
+    "transition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "target_kind", "target_id", "from", "to", "on", "summary", "evidence"],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "target_kind": {
+          "enum": ["phase", "milestone"]
+        },
+        "target_id": {
+          "$ref": "#/$defs/id"
+        },
+        "from": {
+          "$ref": "#/$defs/lifecycleStatus"
+        },
+        "to": {
+          "$ref": "#/$defs/lifecycleStatus"
+        },
+        "on": {
+          "$ref": "#/$defs/date"
+        },
+        "summary": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidence"
+          }
+        }
+      }
+    }
+  }
+}
