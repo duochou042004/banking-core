@@ -1,0 +1,26 @@
+<Project>
+
+  <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
+
+  <PropertyGroup>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <!--
+    Analyzer rules relaxed for test projects only. Production code keeps every rule enabled.
+
+    CA1707 - test names deliberately use underscores so a failure reads as a sentence in the report.
+    CA1001 - xUnit fixtures release resources through IAsyncLifetime.DisposeAsync, which the rule
+             does not recognise as a disposal path.
+    CA2007 - there is no synchronization context to capture in the test host, and ConfigureAwait on
+             every await makes assertions harder to read.
+    CA1861 - inline arrays in assertions are clearer than shared static readonly fields.
+    CA5394 - test data generators use System.Random with a recorded seed; that is the point of a
+             reproducible generative test, not a cryptographic weakness.
+  -->
+  <PropertyGroup>
+    <NoWarn>$(NoWarn);CA1707;CA1001;CA2007;CA1861;CA5394</NoWarn>
+  </PropertyGroup>
+
+</Project>
